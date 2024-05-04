@@ -1,0 +1,7 @@
+$margin: 12px;
+
+.container {
+  height: calc(100vh - (2* $margin));
+  width: calc(100% - (2* $margin));
+  margin: $margin;
+}
