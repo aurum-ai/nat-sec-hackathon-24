@@ -21,6 +21,9 @@ export default function Activity({ params }: ActivityProps) {
         setEvents(result.reverse());
       });
     }, 2000);
+    return () => {
+      clearInterval(timer);
+    };
   }, []);
 
   const closeActiveEvent = () => {

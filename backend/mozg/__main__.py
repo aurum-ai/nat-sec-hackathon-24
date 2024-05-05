@@ -35,14 +35,14 @@ stop_event = Event()
 
 thumbnail_array = ThreadSafeThumbnailArray()
 CLASSES = [
-    {"id": 0, "description": "russian tank"},
-    {"id": 1, "description": "american tank"},
-    {"id": 2, "description": "russian soldier"},
-    {"id": 3, "description": "american soldier"},
-    {"id": 4, "description": "drone"},
-    {"id": 5, "description": "explosion"},
-    {"id": 6, "description": "smoke"},
-    {"id": 7, "description": "fire"},
+    {"id": 0, "description": "tank"},
+    # {"id": 1, "description": "american tank"},
+    # {"id": 2, "description": "russian soldier"},
+    # {"id": 3, "description": "american soldier"},
+    # {"id": 4, "description": "drone"},
+    # {"id": 5, "description": "explosion"},
+    # {"id": 6, "description": "smoke"},
+    # {"id": 7, "description": "fire"},
 ]
 triggers = ThreadSafeArray(CLASSES)
 
@@ -67,7 +67,7 @@ def add_trigger():
 @app.route("/triggers/remove", methods=["POST"])
 def remove_trigger():
     data = request.get_json()
-    for trigger in triggers[:]:
+    for trigger in triggers.get():
         if trigger["id"] == data["triggerId"]:
             triggers.remove(trigger)
             break
@@ -102,7 +102,7 @@ def get_feeds():
             {
                 "id": 0,
                 "name": "drone_1",
-                "coordinates": {"latitude": 37.8247422, "longitude": -122.4261617},
+                "coordinates": {"latitude": 37.82620835270808, "longitude": -122.42236130496087},
             },
             {
                 "id": 1,

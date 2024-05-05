@@ -13,11 +13,14 @@ export default function CameraPopout({ cameraId, onClose }: CameraPopout) {
     getAllActivity().then((activity) => {
       setRecentActivity(activity.filter(act => act.cameraId === cameraId).reverse());
     });
-    setInterval(() => {
+    const timer = setInterval(() => {
       getAllActivity().then((activity) => {
         setRecentActivity(activity.filter(act => act.cameraId === cameraId).reverse());
       });
     }, 2000);
+    return () => {
+      clearInterval(timer);
+    };
   }, [cameraId]);
 
   const thumbnail = recentActivity?.[0]?.img;

@@ -13,7 +13,7 @@ export async function getAllActivity(): Promise<Event[]> {
       }
     }
 
-    console.log(alert);
+    // console.log(alert);
 
     if (found.length) {
       acc.push({
