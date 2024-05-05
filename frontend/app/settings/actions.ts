@@ -3,12 +3,12 @@
 import { Trigger } from './trigger';
 
 export async function getTriggers(): Promise<Trigger[]> {
-  const result = await fetch('http://127.0.0.1:5000/get_triggers').then(res => res.json());
+  const result = await fetch('http://127.0.0.1:5000/triggers').then(res => res.json());
   return result.triggers;
 }
 
 export async function addTrigger(trigger: Trigger): Promise<boolean> {
-  const result = await fetch('http://127.0.0.1:5000/add_trigger', {
+  const result = await fetch('http://127.0.0.1:5000/triggers/add', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -20,7 +20,7 @@ export async function addTrigger(trigger: Trigger): Promise<boolean> {
 }
 
 export async function removeTrigger(triggerId: string): Promise<boolean> {
-  const result = await fetch('http://127.0.0.1:5000/remove_trigger', {
+  const result = await fetch('http://127.0.0.1:5000/triggers/remove', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',

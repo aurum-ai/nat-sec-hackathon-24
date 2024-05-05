@@ -8,17 +8,17 @@ def hello_world():
 
 triggers = []
 
-@app.route('/get_triggers')
+@app.route('/triggers')
 def get_triggers():
     return jsonify({"triggers": triggers})
 
-@app.route('/add_trigger', methods=['POST'])
+@app.route('/triggers/add', methods=['POST'])
 def add_trigger():
     data = request.get_json()
     triggers.append(data)
     return jsonify({"success": True}), 200
 
-@app.route('/remove_trigger', methods=['POST'])
+@app.route('/triggers/remove', methods=['POST'])
 def remove_trigger():
     data = request.get_json()
     for trigger in triggers[:]:
