@@ -20,7 +20,7 @@ export default function Activity({ params }: ActivityProps) {
       getAllActivity().then(result => {
         setEvents(result);
       });
-    }, 1000);
+    }, 2000);
   }, []);
 
   const closeActiveEvent = () => {

@@ -82,7 +82,7 @@ def generate_alerts_json(thumbnail_array):
             {
                 "id": idx,
                 "time": thumbnail.datetime,
-                "feed_id": thumbnail.feed_id,
+                "feedId": thumbnail.feed_id,
                 "type": thumbnail.classes,
                 "thumbnail": f"data:image/jpeg;base64,{pil_to_base64_jpg(thumbnail.image)}",
             }
@@ -100,27 +100,27 @@ def get_feeds():
     return {
         "feeds": [
             {
-                "id": 1,
+                "id": 0,
                 "name": "drone_1",
                 "coordinates": {"latitude": 37.8247422, "longitude": -122.4261617},
             },
             {
-                "id": 2,
+                "id": 1,
                 "name": "drone_2",
                 "coordinates": {"latitude": 37.7742883, "longitude": -122.4604812},
             },
             {
-                "id": 3,
+                "id": 2,
                 "name": "cctv_1",
                 "coordinates": {"latitude": 37.7906386, "longitude": -122.390079},
             },
             {
-                "id": 4,
+                "id": 3,
                 "name": "ground_1",
                 "coordinates": {"latitude": 37.7951755, "longitude": -122.4229226},
             },
             {
-                "id": 5,
+                "id": 4,
                 "name": "gound_2",
                 "coordinates": {"latitude": 37.7934184, "longitude": -122.4561935},
             },
