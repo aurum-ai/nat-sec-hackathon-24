@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "mozg"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+openai = "^1.25.1"
+jupyterlab = "^4.1.8"
+python-dotenv = "^1.0.1"
+pillow = "^10.3.0"
+opencv-python = "^4.9.0.80"
+matplotlib = "^3.8.4"
+flask = "^3.0.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
