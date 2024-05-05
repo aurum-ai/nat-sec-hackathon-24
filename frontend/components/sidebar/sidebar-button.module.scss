@@ -1,0 +1,10 @@
+.link {
+  color: var(--foreground-text);
+  margin: 6px 0;
+  font-size: 28px;
+  transition: .3s;
+
+  &:hover {
+    color: var(--primary);
+  }
+}
