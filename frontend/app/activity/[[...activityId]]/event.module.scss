@@ -5,9 +5,11 @@
 }
 
 .thumbnail {
-  height: 426px;
+  width: 426px;
+  height: 450px;
   background: grey;
   border-radius: 8px;
+  object-fit: contain;
 }
 
 .closeButton {

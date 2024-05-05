@@ -82,7 +82,7 @@ def generate_alerts_json(thumbnail_array):
             {
                 "id": idx,
                 "time": thumbnail.datetime,
-                "feed_id": thumbnail.feed_id,
+                "feedId": thumbnail.feed_id,
                 "type": thumbnail.classes,
                 "thumbnail": f"data:image/jpeg;base64,{pil_to_base64_jpg(thumbnail.image)}",
             }
