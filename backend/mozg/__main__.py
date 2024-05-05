@@ -230,11 +230,12 @@ def run_periodically(feed_id: int, path: str):
         last_processed_time = time_now
         # move forward number of frames based on time elapsed
         frames_to_move = int(time_elapsed * fps)
-        current_frame = (current_frame + frames_to_move) % total_frames
+        next_frame = (current_frame + frames_to_move) % total_frames
 
         # Read the frame
-        if frames_to_move > 1:
-            cap.set(cv2.CAP_PROP_POS_FRAMES, current_frame)
+        if frames_to_move > 1 or next_frame < current_frame:
+            cap.set(cv2.CAP_PROP_POS_FRAMES, next_frame)
+        current_frame = next_frame
         ret, frame = cap.read()
         if not ret:
             print("Error reading frame")

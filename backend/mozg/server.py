@@ -85,6 +85,6 @@ def get_alerts():
                 "type": "tank",
                 "thumbnail": "",
                 "description": "Saw a person",
-            }
+            },
         ]
     }
