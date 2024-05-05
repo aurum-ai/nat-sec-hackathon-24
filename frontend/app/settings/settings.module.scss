@@ -1,0 +1,27 @@
+$margin: 12px;
+
+.container {
+  margin: $margin;
+  height: calc(100vh - (2 * $margin));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  margin-top: 0;
+}
+
+.inputContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.input {
+  padding: 12px;
+  font-size: 1.1rem;
+  width: 500px;
+  border-radius: 4px;
+  border: 0;
+  margin-bottom: 12px;
+}
