@@ -15,7 +15,12 @@ export default function Activity({ params }: ActivityProps) {
   useEffect(() => {
     getAllActivity().then(result => {
       setEvents(result);
-    })
+    });
+    const timer = setInterval(() => {
+      getAllActivity().then(result => {
+        setEvents(result);
+      });
+    }, 1000);
   }, []);
 
   const closeActiveEvent = () => {
