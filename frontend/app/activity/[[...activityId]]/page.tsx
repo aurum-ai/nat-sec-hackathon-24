@@ -14,11 +14,11 @@ export default function Activity({ params }: ActivityProps) {
 
   useEffect(() => {
     getAllActivity().then(result => {
-      setEvents(result);
+      setEvents(result.reverse());
     });
     const timer = setInterval(() => {
       getAllActivity().then(result => {
-        setEvents(result);
+        setEvents(result.reverse());
       });
     }, 2000);
   }, []);

@@ -11,14 +11,16 @@ export default function CameraPopout({ cameraId, onClose }: CameraPopout) {
 
   useEffect(() => {
     getAllActivity().then((activity) => {
-      setRecentActivity(activity.filter(act => act.cameraId === cameraId));
+      setRecentActivity(activity.filter(act => act.cameraId === cameraId).reverse());
     });
     setInterval(() => {
       getAllActivity().then((activity) => {
-        setRecentActivity(activity.filter(act => act.cameraId === cameraId));
+        setRecentActivity(activity.filter(act => act.cameraId === cameraId).reverse());
       });
     }, 2000);
   }, [cameraId]);
+
+  const thumbnail = recentActivity?.[0]?.img;
 
   return (
     <div className={styles.container}>
@@ -26,7 +28,7 @@ export default function CameraPopout({ cameraId, onClose }: CameraPopout) {
         <div className={styles.title}>Camera: {cameraId}</div>
         <button className={styles.closeButton} onClick={onClose}><TbCircleX /></button>
       </div>
-      <div className={styles.videoContainer}></div>
+      {thumbnail ? <img src={thumbnail} className={styles.videoContainer} /> : <div className={styles.videoContainer}></div>}
       <div className={styles.recentActivityTitle}>Recent Activity</div>
       {recentActivity.map(event => (
         <div key={event.id} className={styles.eventContainer}>

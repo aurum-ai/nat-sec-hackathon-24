@@ -28,6 +28,8 @@
 
 .videoContainer {
   height: 426px;
+  width: 450px;
+  object-fit: contain;
   background: grey;
   border-radius: 8px;
 }
