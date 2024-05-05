@@ -6,15 +6,26 @@ app = Flask(__name__)
 def hello_world():
     return "<p>Hello, World!</p>"
 
-# curl -X POST http://127.0.0.1:5000/configure_alerts \
-#-H "Content-Type: application/json" -d '["truck", "tank", "soldier"]'
-@app.route('/configure_alerts', methods=['POST'])
-def configure_alerts():
+triggers = []
+
+@app.route('/get_triggers')
+def get_triggers():
+    return jsonify({"triggers": triggers})
+
+@app.route('/add_trigger', methods=['POST'])
+def add_trigger():
     data = request.get_json()
-    if not data or not isinstance(data, list) or not all(isinstance(item, str) for item in data):
-        return jsonify({"error": "Invalid input"}), 400
-    # Process the array of strings here
-    return jsonify({"success": True, "alerts": data}), 200
+    triggers.append(data)
+    return jsonify({"success": True}), 200
+
+@app.route('/remove_trigger', methods=['POST'])
+def remove_trigger():
+    data = request.get_json()
+    for trigger in triggers[:]:
+        if trigger['id'] == data['triggerId']:
+            triggers.remove(trigger)
+            break
+    return jsonify({"success": True}), 200
 
 @app.route("/feeds")
 def get_feeds():
