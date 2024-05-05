@@ -6,7 +6,7 @@ export default function EventSidebar({ event, onClose }: EventSidebarProps) {
   return (
     <div className={styles.container}>
       <button className={styles.closeButton} onClick={onClose}><TbCircleX /></button>
-      <div className={styles.thumbnail}></div>
+      {event.img ? <img src={event.img} className={styles.thumbnail} /> : <div className={styles.thumbnail}></div>}
     </div>
   );
 }

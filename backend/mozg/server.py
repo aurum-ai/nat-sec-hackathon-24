@@ -73,16 +73,18 @@ def get_alerts():
             {
                 "id": 1,
                 "datetime": "2022-01-01T12:00:00Z",
-                "feed_id": 1,
+                "feedId": 1,
                 "type": "truck",
                 "thumbnail": "",
+                "description": "Saw a tank",
             },
             {
                 "id": 2,
                 "datetime": "2022-01-01T12:00:00Z",
-                "feed_id": 3,
+                "feedId": 3,
                 "type": "tank",
                 "thumbnail": "",
-            },
+                "description": "Saw a person",
+            }
         ]
     }
