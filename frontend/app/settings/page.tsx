@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './settings.module.scss';
 import TriggerComp, { Trigger } from './trigger';
+import { getTriggers, addTrigger, removeTrigger } from './actions';
 
 function generateId() {
   return (Math.random() + 1).toString(36);
@@ -12,19 +13,27 @@ export default function Settings() {
   const [triggers, setTriggers] = useState<Trigger[]>([]);
   const [input, setInput] = useState('');
 
-  const addTrigger = () => {
+  useEffect(() => {
+    getTriggers().then(results => {
+      setTriggers(results);
+    })
+  }, []);
+
+  const createTrigger = () => {
     const newTrigger = { id: generateId(), description: input };
+    addTrigger(newTrigger);
     setTriggers(prev => [...prev, newTrigger]);
     setInput('');
   };
 
-  const removeTrigger = (trigger: Trigger) => {
+  const deleteTrigger = (trigger: Trigger) => {
+    removeTrigger(trigger.id);
     setTriggers(prev => prev.filter(elem => elem.id !== trigger.id))
   };
 
   const handleEnterHit = (event: KeyboardEvent) => {
     if (event.key === 'Enter') {
-      addTrigger();
+      createTrigger();
     }
   };
 
@@ -33,7 +42,7 @@ export default function Settings() {
       <div>
         <h1 className={styles.title}>Configuration</h1>
         {triggers.map(trigger => (
-          <TriggerComp trigger={trigger} key={trigger.id} onClick={removeTrigger} />
+          <TriggerComp trigger={trigger} key={trigger.id} onClick={deleteTrigger} />
         ))}
         {triggers.length === 0 && <p>No triggers currently set.</p>}
       </div>
