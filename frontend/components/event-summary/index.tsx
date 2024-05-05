@@ -17,7 +17,8 @@ export default function EventSummary({ event, onClick }: EventSummaryProps) {
 
   return (
     <div className={styles.container} onClick={click}>
-      {event.description}
+      <span>{event.description}</span>
+      <span>{event.timestamp}</span>
     </div>
   );
 }
