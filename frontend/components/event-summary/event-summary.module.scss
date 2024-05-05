@@ -2,4 +2,9 @@
   cursor: pointer;
   display: flex;
   justify-content: space-between;
+  background: var(--foreground);
+  color: var(--foreground-text);
+  border-radius: 8px;
+  padding: 12px;
+  text-decoration: none;
 }

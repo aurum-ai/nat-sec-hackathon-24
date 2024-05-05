@@ -59,11 +59,13 @@ export default function Map({ locations, onLocationClick }: MapProps) {
     }
   }, []);
 
+  const padding = 96;
+
   const initalView = {
     bounds: getOuterBounds(locations || [{ lat: 37.78, long: -122.45, id: '' }]),
     fitBoundsOptions: {
       padding: {
-        left: 48, right: 48, top: 48, bottom: 48,
+        left: padding, right: padding, top: padding, bottom: padding,
       },
     },
   };

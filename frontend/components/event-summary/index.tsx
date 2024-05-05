@@ -1,4 +1,5 @@
 import styles from './event-summary.module.scss';
+import Link from 'next/link';
 
 export type Event = {
   id: string;
@@ -8,22 +9,15 @@ export type Event = {
   description: string;
 };
 
-export default function EventSummary({ event, onClick }: EventSummaryProps) {
-  const click = () => {
-    if (onClick) {
-      onClick(event);
-    }
-  };
-
+export default function EventSummary({ event }: EventSummaryProps) {
   return (
-    <div className={styles.container} onClick={click}>
+    <Link href={`/activity/${event.id}`} className={styles.container}>
       <span>{event.description}</span>
       <span>{event.timestamp}</span>
-    </div>
+    </Link>
   );
 }
 
 type EventSummaryProps = {
   event: Event;
-  onClick?: (event: Event) => {};
 };

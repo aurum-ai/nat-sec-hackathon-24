@@ -1,0 +1,47 @@
+.container {
+  width: 450px;
+  margin-left: 12px;
+  position: relative;
+}
+
+.closeButton {
+  background: none;
+  border: 0;
+  font-size: 24px;
+  color: var(--foreground-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.topBar {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 12px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.videoContainer {
+  height: 426px;
+  background: grey;
+  border-radius: 8px;
+}
+
+.title {
+  font-size: 1.4em;
+}
+
+.recentActivityTitle {
+  font-size: 1.4em;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.eventContainer {
+  margin: 12px 0;
+}

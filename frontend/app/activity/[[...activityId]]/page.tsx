@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import EventSummary, { Event } from '@/components/event-summary';
 import styles from './activity.module.scss';
-import { getAllActivity } from "./actions";
+import { getAllActivity } from "../actions";
 
 export default function Activity() {
   const [events, setEvents] = useState<Event[]>([]);

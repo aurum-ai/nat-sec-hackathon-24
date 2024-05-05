@@ -1,13 +1,12 @@
 'use client'
 
-import { KeyboardEventHandler, useState } from 'react';
+import { useState } from 'react';
 import styles from './settings.module.scss';
 import TriggerComp, { Trigger } from './trigger';
 
 function generateId() {
   return (Math.random() + 1).toString(36);
 }
-
 
 export default function Settings() {
   const [triggers, setTriggers] = useState<Trigger[]>([]);
