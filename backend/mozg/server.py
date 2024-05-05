@@ -7,23 +7,27 @@ app = Flask(__name__)
 def hello_world():
     return "<p>Hello, World!</p>"
 
+
 triggers = []
 
-@app.route('/triggers')
+
+@app.route("/triggers")
 def get_triggers():
     return jsonify({"triggers": triggers})
 
-@app.route('/triggers/add', methods=['POST'])
+
+@app.route("/triggers/add", methods=["POST"])
 def add_trigger():
     data = request.get_json()
     triggers.append(data)
     return jsonify({"success": True}), 200
 
-@app.route('/triggers/remove', methods=['POST'])
+
+@app.route("/triggers/remove", methods=["POST"])
 def remove_trigger():
     data = request.get_json()
     for trigger in triggers[:]:
-        if trigger['id'] == data['triggerId']:
+        if trigger["id"] == data["triggerId"]:
             triggers.remove(trigger)
             break
     return jsonify({"success": True}), 200

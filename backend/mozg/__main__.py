@@ -17,6 +17,8 @@ from multiprocessing import Pool, cpu_count
 from typing import Dict, Tuple
 from dotenv import load_dotenv
 import numpy as np
+from datetime import datetime
+
 
 from util import ThreadSafeArray, ThreadSafeThumbnailArray, Thumbnail
 
@@ -32,23 +34,98 @@ client = OpenAI(
 stop_event = Event()
 
 thumbnail_array = ThreadSafeThumbnailArray()
-
 CLASSES = [
-    "russian tank",
-    "american tank",
-    "russian soldier",
-    "american soldier",
-    "drone",
-    "explosion",
-    "smoke",
-    "fire",
+    {"id": 0, "description": "russian tank"},
+    {"id": 1, "description": "american tank"},
+    {"id": 2, "description": "russian soldier"},
+    {"id": 3, "description": "american soldier"},
+    {"id": 4, "description": "drone"},
+    {"id": 5, "description": "explosion"},
+    {"id": 6, "description": "smoke"},
+    {"id": 7, "description": "fire"},
 ]
-categories = ThreadSafeArray(CLASSES)
+triggers = ThreadSafeArray(CLASSES)
 
 
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
+
+
+@app.route("/triggers")
+def get_triggers():
+    return jsonify({"triggers": triggers.get()})
+
+
+@app.route("/triggers/add", methods=["POST"])
+def add_trigger():
+    data = request.get_json()
+    triggers.add(data)
+    return jsonify({"success": True}), 200
+
+
+@app.route("/triggers/remove", methods=["POST"])
+def remove_trigger():
+    data = request.get_json()
+    for trigger in triggers[:]:
+        if trigger["id"] == data["triggerId"]:
+            triggers.remove(trigger)
+            break
+    return jsonify({"success": True}), 200
+
+
+def generate_alerts_json(thumbnail_array):
+    thumbnails = thumbnail_array.get_thumbnails()
+    alerts = []
+    for idx, thumbnail in enumerate(thumbnails, start=1):
+        alerts.append(
+            {
+                "id": idx,
+                "time": thumbnail.datetime,
+                "feed_id": thumbnail.feed_id,
+                "type": thumbnail.classes,
+                "thumbnail": f"data:image/jpeg;base64,{pil_to_base64_jpg(thumbnail.image)}",
+            }
+        )
+    return json.dumps({"alerts": alerts}, indent=4)
+
+
+@app.route("/alerts")
+def get_alerts():
+    return generate_alerts_json(thumbnail_array)
+
+
+@app.route("/feeds")
+def get_feeds():
+    return {
+        "feeds": [
+            {
+                "id": 1,
+                "name": "drone_1",
+                "coordinates": {"latitude": 37.8247422, "longitude": -122.4261617},
+            },
+            {
+                "id": 2,
+                "name": "drone_2",
+                "coordinates": {"latitude": 37.7742883, "longitude": -122.4604812},
+            },
+            {
+                "id": 3,
+                "name": "cctv_1",
+                "coordinates": {"latitude": 37.7906386, "longitude": -122.390079},
+            },
+            {
+                "id": 4,
+                "name": "ground_1",
+                "coordinates": {"latitude": 37.7951755, "longitude": -122.4229226},
+            },
+            {
+                "id": 5,
+                "name": "gound_2",
+                "coordinates": {"latitude": 37.7934184, "longitude": -122.4561935},
+            },
+        ]
+    }
 
 
 def encode_image(image_path: str) -> str:
@@ -80,7 +157,7 @@ def resize_image_maintain_aspect(image: Image, target_width: int) -> Image:
 def analyze_frame_for_classes(frame: Image):
     model = "gpt-4-turbo"
     prompt = f"""
-        Identify if an object from the following categories appears in this photo: {categories.str()}
+        Identify if an object from the following categories appears in this photo: {triggers.str()}
         Format the json with true/false for each class.
     """
     base64_jpg = pil_to_base64_jpg(frame)
@@ -119,7 +196,7 @@ def query_frame_for_classes(feed_id: int, frame_num: int, frame: np.ndarray):
 
 def process_frame(feed_id: int, frame_num: int, frame: np.ndarray):
     """Processes each frame, used for live feed"""
-    print(f"{feed_id} Processing frame {frame_num} at time {time.time()}")
+    # print(f"{feed_id} Processing frame {frame_num} at time {time.time()}")
     pass
 
 
