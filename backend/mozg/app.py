@@ -2,6 +2,7 @@
 
 from openai import OpenAI
 
+
 class App:
     def __init__(self):
         pass

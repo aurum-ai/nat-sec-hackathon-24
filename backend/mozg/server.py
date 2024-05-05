@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
@@ -27,6 +28,7 @@ def remove_trigger():
             break
     return jsonify({"success": True}), 200
 
+
 @app.route("/feeds")
 def get_feeds():
     return {
@@ -34,45 +36,31 @@ def get_feeds():
             {
                 "id": 1,
                 "name": "drone_1",
-                "coordinates": {
-                    "latitude": 37.8247422,
-                    "longitude": -122.4261617
-                }
+                "coordinates": {"latitude": 37.8247422, "longitude": -122.4261617},
             },
             {
                 "id": 2,
                 "name": "drone_2",
-                "coordinates": {
-                    "latitude": 37.7742883,
-                    "longitude": -122.4604812
-                }
+                "coordinates": {"latitude": 37.7742883, "longitude": -122.4604812},
             },
             {
                 "id": 3,
                 "name": "cctv_1",
-                "coordinates": {
-                    "latitude": 37.7906386,
-                    "longitude": -122.390079
-                }
+                "coordinates": {"latitude": 37.7906386, "longitude": -122.390079},
             },
             {
                 "id": 4,
                 "name": "ground_1",
-                "coordinates": {
-                    "latitude": 37.7951755,
-                    "longitude": -122.4229226
-                }
+                "coordinates": {"latitude": 37.7951755, "longitude": -122.4229226},
             },
             {
                 "id": 5,
                 "name": "gound_2",
-                "coordinates": {
-                    "latitude": 37.7934184,
-                    "longitude": -122.4561935
-                }
+                "coordinates": {"latitude": 37.7934184, "longitude": -122.4561935},
             },
         ]
     }
+
 
 @app.route("/alerts")
 def get_alerts():
