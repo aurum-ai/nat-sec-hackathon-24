@@ -13,10 +13,12 @@ export async function getAllActivity(): Promise<Event[]> {
       }
     }
 
+    console.log(alert);
+
     if (found.length) {
       acc.push({
         id: String(alert.id),
-        cameraId: alert.feedId,
+        cameraId: String(alert.feedId),
         img: alert.thumbnail,
         timestamp: alert.datetime,
         description: `Found: ${found.join(", ")}`,

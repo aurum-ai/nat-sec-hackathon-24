@@ -13,6 +13,11 @@ export default function CameraPopout({ cameraId, onClose }: CameraPopout) {
     getAllActivity().then((activity) => {
       setRecentActivity(activity.filter(act => act.cameraId === cameraId));
     });
+    setInterval(() => {
+      getAllActivity().then((activity) => {
+        setRecentActivity(activity.filter(act => act.cameraId === cameraId));
+      });
+    }, 2000);
   }, [cameraId]);
 
   return (
