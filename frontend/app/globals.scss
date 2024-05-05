@@ -1,0 +1,27 @@
+:root {
+  --base-light: #616161;
+  --base: #424242;
+  --base-dark: #212121;
+
+  --primary-light: #ffd54f;
+  --primary: #ffc107;
+  --primary-dark: #ffa000;
+
+  --warn-light: #ef5350;
+  --warn: #e53935;
+  --warn-dark: #c62828;
+
+  --background: var(--base);
+  --foreground: var(--base-dark);
+  --background-text: white;
+  --foreground-text: white;
+}
+
+body {
+  margin: 0;
+}
+
+body {
+  background: var(--background);
+  color: var(--background-text);
+}

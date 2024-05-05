@@ -1,0 +1,12 @@
+$margin: 12px;
+
+.container {
+  height: calc(100vh - (2 * $margin));
+  width: calc(100% - $margin);
+  margin: $margin $margin $margin 0;
+  display: flex;
+}
+
+.mapContainer {
+  flex: 1;
+}
