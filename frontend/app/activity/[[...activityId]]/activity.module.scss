@@ -1,5 +1,10 @@
 .container {
   margin: 12px;
+  display: flex;
+}
+
+.activityContainer {
+  flex: 1;
 }
 
 .title {
@@ -8,4 +13,9 @@
 
 .eventContainer {
   margin: 12px 0;
+  border-radius: 8px;
+}
+
+.activeEvent {
+  border: 1px solid var(--primary);
 }
