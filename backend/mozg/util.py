@@ -1,4 +1,5 @@
 from threading import Timer, Thread, Lock
+import time
 
 
 class Thumbnail:
@@ -7,6 +8,7 @@ class Thumbnail:
         self.frame_num = frame_num
         self.image = image
         self.classes = classes
+        self.datetime = time.time()
 
     def __repr__(self):
         return f"Thumbnail(image, feed_id={self.feed_id}, frame_num={self.frame_num}, classes={self.classes})"
@@ -43,7 +45,7 @@ class ThreadSafeArray:
         self.array = array
 
     def str(self):
-        return ", ".join(str(item) for item in self.array)
+        return ", ".join(str(item["description"]) for item in self.array)
 
     def add(self, item):
         with self.lock:
